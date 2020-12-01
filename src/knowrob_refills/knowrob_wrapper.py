@@ -293,6 +293,7 @@ class KnowRob(object):
         q = 'forall( member(Frame, {0}), ' \
             '(tf_mng_lookup(Frame, _, {1}.{2}, P, _,_), ' \
             'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(list(frame_names), time.secs, time.nsecs)
+        print q
         bindings = self.once(q)
         self.republish_marker()
 
