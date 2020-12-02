@@ -804,8 +804,7 @@ class KnowRob(object):
 
     # stocktaking
     def neem_stocktacking(self, act_iri, store_iri, robot_iri, begin_act, end_act, episode_iri):
-        q = 'tell(['\
-            'Act = \'{}\','\
+        q = 'Act = \'{}\',tell(['\
             'has_participant(Act,\'{}\'),'\
             'is_performed_by(Act,\'{}\'),'\
             'occurs(Act) during [\'{}\',\'{}\'],'\
@@ -866,8 +865,7 @@ class KnowRob(object):
 
     # c, d, e
     def neem_for_shelf(self, act_iri, shelve_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
-            'Act = \'{}\','\
+        q = 'Act = \'{}\',tell(['\
             'has_participant(Act,\'{}\'),'\
             'is_performed_by(Act,\'{}\'),'\
             'occurs(Act) during [\'{}\',\'{}\'],'\
