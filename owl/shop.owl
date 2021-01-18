@@ -542,6 +542,33 @@
     
 
 
+    <!-- http://knowrob.org/kb/shop.owl#erpFacingId -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#erpFacingId">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#erpShelfLayerId -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#erpShelfLayerId">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#erpShelfId -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#erpShelfId">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+
+
+
     <!-- http://knowrob.org/kb/shop.owl#gtin -->
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#gtin">
@@ -576,6 +603,24 @@
     
 
 
+    <!-- http://knowrob.org/kb/shop.owl#productInShelfId -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#productInShelfId">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#productParameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#productInShelfLayerId -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#productInShelfLayerId">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#productParameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://knowrob.org/kb/shop.owl#productParameter -->
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#productParameter">
@@ -587,7 +632,9 @@
 
     <!-- http://knowrob.org/kb/shop.owl#shopParameter -->
 
-    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#shopParameter"/>
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#shopParameter">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasDataValue"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -597,6 +644,12 @@
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#productParameter"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasDataValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasDataValue"/>
     
 
 
