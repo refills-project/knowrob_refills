@@ -1434,3 +1434,25 @@ assert_perception_feature__(Object) :-
   tell(is_at(FeatureIndividual, [ObjFrame, T2, R2])),
   rdf_split_url(_, FeatureFrameName, FeatureIndividual), 
   tell(holds(FeatureIndividual, knowrob:frameName, FeatureFrameName)).
+
+assert_layer_id(Shelf) :-
+  findall([Z, Layer],
+        (triple(X, soma:hasPhysicalComponent, Layer),is_at(Layer, [_, [X1,Y,Z], _])),
+        Layers),
+  sort(0, @>, Layers, SortedLayers),
+  forall(
+    (member([Z_val,L], SortedLayers)), 
+    (nth1(Id, SortedLayers, [Z_val,L]), 
+    tell(holds(L, shop:erpShelfLayerId, Id)))
+  ).
+
+assert_facing_id(Layer) :-
+  findall([Y, F],
+          (triple(F, shop:layerOfFacing, Layer),is_at(F, [_, [X,Y,Z], _])),
+          Facings),
+  sort(Facings, SortedFacings),
+  forall(
+    (member([Y, F], SortedFacings)),
+    (nth1(Id, SortedFacings, [Y, F]),
+    tell(holds(F, shop:erpFacingId, Id)))
+  ).
