@@ -663,7 +663,7 @@ class KnowRob(object):
         raise Exception('can\' compute facing width')
 
     def compute_shelf_product_type(self, facing_id):
-        q = 'compute_shelf_facing_product_type(Facing, P)'.format(facing_id)
+        q = 'compute_shelf_facing_product_type(\'{}\', P)'.format(facing_id)
         self.once(q)
 
     def belief_at_update(self, id, pose):
@@ -902,7 +902,21 @@ class KnowRob(object):
                 product = self.gtin_to_product[gtin]
                 q = 'product_spawn_front_to_back(\'{}\', ObjId, \'{}\')'.format(facing_id, product)
             else:
-                q = 'product_spawn_front_to_back(\'{}\', ObjId)'.format(facing_id)
+                q = 'Facing=\'{}\', ' \
+                    'shelf_facing_product_type(Facing, TypeOrBBOX), ' \
+                    'triple(Facing, shop:layerOfFacing, Layer), ' \
+                    'product_dimensions(TypeOrBBOX, [Obj_D,_,_]), ' \
+                    'shop:shelf_facing_products(Facing, ProductsFrontToBack), ' \
+                    'reverse(ProductsFrontToBack, ProductsBackToFront), ' \
+                    '( ProductsBackToFront=[] -> (' \
+                    'object_dimensions(Layer,Layer_D,_,_), ' \
+                    'Obj_Pos is -Layer_D*0.5 + Obj_D*0.5 + 0.02, ' \
+                    'shop:product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj));' \
+                    '(ProductsBackToFront=[(Last_Pos,Last)|_],has_type(Last, LastType),' \
+                    'product_dimensions(LastType,[Last_D,_,_]),Obj_Pos is Last_Pos + 0.5*Last_D + 0.5*Obj_D + 0.03,' \
+                    'shop:product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj))), ' \
+                    '!. '.format(facing_id)
+                # q = 'product_spawn_front_to_back(\'{}\', ObjId)'.format(facing_id)
             self.once(q)
 
     def save_beliefstate(self, path=None):  ### beleifstate.owl might not be created. the data is stored in tripledb
